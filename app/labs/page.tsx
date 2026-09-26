@@ -23,6 +23,14 @@ export default function Labs() {
         <li>
           <Link href="/" id="wd-kambaz-link">Kambaz</Link>
         </li>
+        <li>
+        <a
+            id="wd-github"
+            href="https://github.com/zengby-aa/webdev-client"
+        >
+            GitHub Repository
+        </a>
+        </li>
       </ul>
     </div>
   );
