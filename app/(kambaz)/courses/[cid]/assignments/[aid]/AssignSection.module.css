@@ -1,0 +1,43 @@
+.editorTable {
+  border-collapse: separate;
+  border-spacing: 2px 12px;
+}
+
+.panel {
+  box-sizing: border-box;
+  width: 480px;
+  max-width: 100%;
+  margin-top: 0;
+  padding: 16px;
+  border: 1px solid #c7cdd1;
+  border-radius: 4px;
+  background: white;
+  color: #34404a;
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.field { min-width: 0; }
+.field label { display: block; font-weight: 600; margin-bottom: 6px; }
+.field input {
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  padding: 10px 8px;
+  border: 1px solid #c7cdd1;
+  border-radius: 3px;
+  background: white;
+  color: inherit;
+  font: inherit;
+}
+.dates { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+
+/* Keep the calendar button visible; reveal date segments while editing. */
+.field input.emptyDate:not(:focus) {
+  color: transparent;
+}
+.emptyDate:not(:focus)::-webkit-datetime-edit {
+  opacity: 0;
+}

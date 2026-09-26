@@ -1,0 +1,18 @@
+.root { position: relative; width: 100%; max-width: 100%; font-family: Arial, sans-serif; color: #34404a; }
+.heading {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.control { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; padding: 10px; border: 1px solid #c7cdd1; border-radius: 4px; background: white; }
+.control:focus-within { outline: 2px solid #2563eb; outline-offset: 1px; }
+.tag { display: inline-flex; align-items: center; gap: 14px; padding: 6px 10px; background: #f2f3f4; border-radius: 3px; }
+.tag button, .toggle { border: 0; background: transparent; color: inherit; cursor: pointer; font-size: 20px; padding: 0 4px; }
+.search { flex: 1; width: 120px; min-width: 100px; border: 0; background: transparent; color: inherit; font: inherit; padding: 6px 0; }
+.search:focus { outline: none; }
+.options { position: absolute; top: 100%; left: 0; right: 0; z-index: 10; margin: 6px 0 0; padding: 12px; border: 1px solid #c7cdd1; border-radius: 4px; background: white; box-shadow: 0 4px 12px #0002; }
+.options legend { background: white; padding: 0 4px; }
+.actions { display: flex; gap: 8px; margin-bottom: 8px; }
+.actions button { cursor: pointer; padding: 4px 10px; }
+.option { display: flex; align-items: center; gap: 8px; padding: 8px; cursor: pointer; }
+.option:hover { background: #f2f3f4; }
