@@ -17,6 +17,14 @@ export default function TOC() {
           Kambaz
         </Link>
       </li>
+      <li>
+        <Link
+          href="https://webdev-client.vercel.app/book/ch1"
+          id="wd-toc-book-link"
+        >
+          Chapter 1
+        </Link>
+      </li>
     </ul>
   );
 }
