@@ -1,40 +1,61 @@
+"use client";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import "../../kambaz.css";
 
 export default function CourseNavigation({ cid }: { cid: string }) {
+  const pathname = usePathname() ?? "";
+  const home = `/courses/${cid}/home`;
+  const assignments = `/courses/${cid}/assignments`;
   return (
-    <div id="wd-courses-navigation">
-      <Link href={`/courses/${cid}/home`} id="wd-course-home-link">
+    <div id="wd-courses-navigation" className="wd list-group rounded-none text-lg">
+      <Link
+        href={home}
+        id="wd-course-home-link"
+        className={
+          pathname === home
+            ? "list-group-item active border-0"
+            : "list-group-item border-0 text-red-600"
+        }
+      >
         Home
-      </Link>{" "}
-      <br />
-      <Link href={`/courses/${cid}/modules`} id="wd-course-modules-link">
-        Modules
-      </Link>{" "}
-      <br />
-      <Link href={`/courses/${cid}/piazza`} id="wd-course-piazza-link">
-        Piazza
-      </Link>{" "}
-      <br />
-      <Link href={`/courses/${cid}/zoom`} id="wd-course-zoom-link">
-        Zoom
-      </Link>{" "}
-      <br />
-      <Link href={`/courses/${cid}/assignments`} id="wd-course-assignments-link">
+      </Link>
+      <Link
+        href={assignments}
+        id="wd-course-assignments-link"
+        className={
+          pathname === assignments || pathname.startsWith(assignments + "/")
+            ? "list-group-item active border-0"
+            : "list-group-item border-0 text-red-600"
+        }
+      >
         Assignments
-      </Link>{" "}
-      <br />
-      <Link href={`/courses/${cid}/quizzes`} id="wd-course-quizzes-link">
-        Quizzes
-      </Link>{" "}
-      <br />
-      <Link href={`/courses/${cid}/grades`} id="wd-course-grades-link">
-        Grades
-      </Link>{" "}
-      <br />
-      <Link href={`/courses/${cid}/people/table`} id="wd-course-people-link">
-        People
-      </Link>{" "}
-      <br />
+      </Link>
+      {[
+        { path: "modules", label: "Modules" },
+        { path: "piazza", label: "Piazza" },
+        { path: "zoom", label: "Zoom" },
+        { path: "quizzes", label: "Quizzes" },
+        { path: "grades", label: "Grades" },
+        { path: "people", label: "People", destination: "people/table" },
+      ].map(({ path, label, destination }) => {
+        const route = `/courses/${cid}/${path}`;
+        const active = pathname === route || pathname.startsWith(route + "/");
+        return (
+          <Link
+            key={path}
+            href={`/courses/${cid}/${destination ?? path}`}
+            id={`wd-course-${path}-link`}
+            aria-current={active ? "page" : undefined}
+            className={active ? "list-group-item active border-0" : "list-group-item border-0 text-red-600"}
+          >
+            {label}
+          </Link>
+        );
+      })}
+      <Link href={home} id="wd-course-ai-link" className="list-group-item border-0 text-red-600">
+        Sample
+      </Link>
     </div>
   );
 }

@@ -13,18 +13,12 @@ export default async function CoursesLayout({
     <div id="wd-courses">
       <h2>Courses {cid}</h2>
       <hr />
-      <table>
-        <tbody>
-          <tr>
-            <td valign="top" width="200">
-              <CourseNavigation cid={cid} />
-            </td>
-            <td valign="top" width="100%">
-              {children}
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <div className="flex gap-4">
+        <aside className="hidden w-[140px] shrink-0 md:block" aria-label="Course navigation">
+          <CourseNavigation cid={cid} />
+        </aside>
+        <div className="min-w-0 flex-1">{children}</div>
+      </div>
     </div>
   );
 }

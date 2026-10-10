@@ -16,17 +16,18 @@ export default async function AssignmentEditor({
   };
   const assignmentName = assignmentNames[aid] ?? aid;
   return (
-    <div id="wd-assignments-editor">
-      <label htmlFor="wd-name">Assignment Name</label>
-      <input key={aid} id="wd-name" defaultValue={assignmentName} />
-      <br />
-      <br />
+    <div id="wd-assignments-editor" className="max-w-3xl text-sm text-neutral-700">
+      <label htmlFor="wd-name" className="mb-2 block">Assignment Name</label>
+      <input key={aid} id="wd-name" className="mb-5 block w-full rounded border border-neutral-300 bg-white px-3 py-2" defaultValue={assignmentName} />
 
-      <br />
+
+
+
       <textarea
         id="wd-description"
         rows={10}
-        cols={60}
+        aria-label="Description"
+        className="mb-5 block w-full resize-y rounded border border-neutral-300 bg-white p-3 leading-6"
         defaultValue={`The assignment is available online.
 
 Submit a link to the landing page of your Web application running on Netlify.
@@ -39,43 +40,43 @@ The landing page should include the following:
 
 The Kambaz application should include a link to navigate back to the landing page.`}
       />
-      <br />
-      <table className={styles.editorTable}>
-        <tbody>
-          <tr>
-            <td align="right" valign="top">
+
+      <div className="space-y-5 [&_select]:w-full [&_select]:rounded [&_select]:border [&_select]:border-neutral-300 [&_select]:bg-white [&_select]:px-3 [&_select]:py-2">
+        
+          <div className="grid grid-cols-[minmax(0,28%)_minmax(0,1fr)] items-start gap-4">
+            <div className="pt-2 text-right">
               <label htmlFor="wd-points">Points</label>
-            </td>
-            <td>
-              <input id="wd-points" type="number" defaultValue={100} />
-            </td>
-          </tr>
-          <tr>
-            <td align="right"><label htmlFor="wd-group">Assignment Group</label></td>
-            <td>
+            </div>
+            <div className="min-w-0">
+              <input className="box-border w-full rounded border border-neutral-300 bg-white px-3 py-2" id="wd-points" type="number" defaultValue={100} />
+            </div>
+          </div>
+          <div className="grid grid-cols-[minmax(0,28%)_minmax(0,1fr)] items-start gap-4">
+            <div className="pt-2 text-right"><label htmlFor="wd-group">Assignment Group</label></div>
+            <div className="min-w-0">
               <select id="wd-group" defaultValue="ASSIGNMENTS">
                 <option>ASSIGNMENTS</option>
                 <option>QUIZZES</option>
                 <option>EXAMS</option>
                 <option>PROJECT</option>
               </select>
-            </td>
-          </tr>
-          <tr>
-            <td align="right"><label htmlFor="wd-display-grade-as">Display Grade as</label></td>
-            <td>
+            </div>
+          </div>
+          <div className="grid grid-cols-[minmax(0,28%)_minmax(0,1fr)] items-start gap-4">
+            <div className="pt-2 text-right"><label htmlFor="wd-display-grade-as">Display Grade as</label></div>
+            <div className="min-w-0">
               <select id="wd-display-grade-as" defaultValue="Percentage">
                 <option>Percentage</option>
                 <option>Points</option>
                 <option>Complete/Incomplete</option>
                 <option>Letter Grade</option>
               </select>
-            </td>
-          </tr>
-          <tr>
-            <td align="right" valign="top"><label htmlFor="wd-submission-type">Submission Type</label></td>
-            <td>
-  <fieldset>
+            </div>
+          </div>
+          <div className="grid grid-cols-[minmax(0,28%)_minmax(0,1fr)] items-start gap-4">
+            <div className="pt-2 text-right"><label htmlFor="wd-submission-type">Submission Type</label></div>
+            <div className="min-w-0">
+  <fieldset className="m-0 min-w-0 rounded border border-neutral-300 p-4 [&_h4]:font-semibold [&_input]:mb-4 [&_input]:mr-2">
     <select id="wd-submission-type" defaultValue="Online">
       <option>Online</option>
       <option>No Submission</option>
@@ -86,29 +87,29 @@ The Kambaz application should include a link to navigate back to the landing pag
     <h4>Online Entry Options</h4>
 
     <input type="checkbox" id="wd-text-entry" />
-    <label htmlFor="wd-text-entry">Text Entry</label>
+    <label htmlFor="wd-text-entry">Text Entry</label><br />
     <br />
 
     <input type="checkbox" id="wd-website-url" defaultChecked />
-    <label htmlFor="wd-website-url">Website URL</label>
+    <label htmlFor="wd-website-url">Website URL</label><br />
     <br />
 
     <input type="checkbox" id="wd-media-recordings" />
-    <label htmlFor="wd-media-recordings">Media Recordings</label>
+    <label htmlFor="wd-media-recordings">Media Recordings</label><br />
     <br />
 
     <input type="checkbox" id="wd-student-annotation" />
-    <label htmlFor="wd-student-annotation">Student Annotation</label>
+    <label htmlFor="wd-student-annotation">Student Annotation</label><br />
     <br />
 
     <input type="checkbox" id="wd-file-upload" />
-    <label htmlFor="wd-file-upload">File Uploads</label>
+    <label htmlFor="wd-file-upload">File Uploads</label><br />
 </fieldset>
-</td>
-          </tr>
-          <tr>
-            <td align="right" valign="top">Assign</td>
-            <td>
+</div>
+          </div>
+          <div className="grid grid-cols-[minmax(0,28%)_minmax(0,1fr)] items-start gap-4">
+            <div className="pt-2 text-right">Assign</div>
+            <div className="min-w-0">
               <div className={styles.panel} role="group" aria-label="Assign">
                 <AssignTo key={aid} />
                 <div className={styles.field}>
@@ -126,14 +127,16 @@ The Kambaz application should include a link to navigate back to the landing pag
                   </div>
                 </div>
               </div>
-            </td>
-          </tr>
-          <tr>
-            <td />
-            <td><EditorActions cid={cid} /></td>
-          </tr>
-        </tbody>
-      </table>
+            </div>
+          </div>
+          <div className="grid grid-cols-[minmax(0,28%)_minmax(0,1fr)] items-start gap-4">
+            
+            <div className="col-span-2"><EditorActions cid={cid} /></div>
+          </div>
+        
+      </div>
     </div>
   );
 }
+
+
