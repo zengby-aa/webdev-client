@@ -1,22 +1,17 @@
 "use client";
 
-import { Suspense, useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useAccountContext } from "../AccountContext";
 
 export default function Signin() {
-  return <Suspense fallback={<p>Loading sign in…</p>}><SigninForm /></Suspense>;
-}
-
-function SigninForm() {
   const [credentials, setCredentials] = useState({
     username: "",
     password: "",
   });
   const { users, setCurrentUser } = useAccountContext();
   const router = useRouter();
-  const searchParams = useSearchParams();
   const [error, setError] = useState("");
 
   const signin = () => {
@@ -30,7 +25,7 @@ function SigninForm() {
       return;
     }
     setCurrentUser(user);
-    const next = searchParams.get("next");
+    const next = new URLSearchParams(window.location.search).get("next");
     const destination = next && (next === "/dashboard" || /^\/courses\/[^/]+\/(home|modules|assignments(?:\/[^/]+)?|people\/table|grades|quizzes|piazza|zoom)$/.test(next))
       ? next : "/dashboard";
     router.push(destination);
@@ -43,6 +38,8 @@ function SigninForm() {
       <input
         placeholder="username"
         id="wd-username"
+        type="text"
+        name="username"
         autoComplete="username"
         className="mb-3 block w-full rounded border border-neutral-300 px-3 py-2"
         value={credentials.username}
@@ -55,6 +52,7 @@ function SigninForm() {
         placeholder="password"
         type="password"
         id="wd-password"
+        name="password"
         autoComplete="current-password"
         className="mb-3 block w-full rounded border border-neutral-300 px-3 py-2"
         value={credentials.password}

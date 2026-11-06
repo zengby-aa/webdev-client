@@ -2,6 +2,7 @@
 
 import { ReactNode, useState } from "react";
 import { redirect, useParams, usePathname } from "next/navigation";
+import Link from "next/link";
 import { FaAlignJustify } from "react-icons/fa6";
 import CourseNavigation from "./Navigation";
 import Breadcrumb from "./Breadcrumb";
@@ -22,19 +23,27 @@ export default function CoursesLayout({
   const { currentUser } = useAccountContext();
   const enrollments = useEnrollmentsStore((state) => state.enrollments);
   const [showCourseNav, setShowCourseNav] = useState(true);
+  const isCourseDemo = !currentUser && (
+    pathname === `/courses/${courseId}/home` || pathname === `/courses/${courseId}/modules`
+  );
 
   if (!course) redirect("/dashboard");
 
-  if (!currentUser) {
+  if (!currentUser && !isCourseDemo) {
     redirect(`/account/signin?next=${encodeURIComponent(pathname)}`);
   }
 
-  if (!enrollments.some((item) => item.user === currentUser._id && item.course === courseId)) {
+  if (currentUser && !enrollments.some((item) => item.user === currentUser._id && item.course === courseId)) {
     redirect("/dashboard");
   }
 
   return (
     <div id="wd-courses">
+      {isCourseDemo && (
+        <p className="mb-3 text-sm text-neutral-600">
+          Course demo. <Link href={`/account/signin?next=${encodeURIComponent(pathname)}`} className="text-blue-600 underline">Sign in</Link> to manage your enrollments.
+        </p>
+      )}
       <h2 className="text-2xl font-semibold text-red-600">
         <FaAlignJustify
           className="me-4 mb-1 inline cursor-pointer text-xl"
