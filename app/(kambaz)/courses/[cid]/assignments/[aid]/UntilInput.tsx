@@ -1,17 +1,15 @@
 "use client";
 
-import { useState } from "react";
 import styles from "./AssignSection.module.css";
 
-export default function UntilInput() {
-  const [empty, setEmpty] = useState(true);
-
+export default function UntilInput({ value, onChange }: { value: string; onChange: (value: string) => void }) {
   return (
     <input
       id="wd-available-until"
       type="datetime-local"
-      className={empty ? styles.emptyDate : undefined}
-      onChange={(event) => setEmpty(event.currentTarget.value === "")}
+      value={value}
+      className={!value ? styles.emptyDate : undefined}
+      onInput={(event) => onChange(event.currentTarget.value)}
     />
   );
 }

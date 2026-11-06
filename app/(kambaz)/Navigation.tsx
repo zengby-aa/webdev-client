@@ -5,13 +5,29 @@ import { FaRegCircleUser } from "react-icons/fa6";
 import { FaBook, FaRegCalendarAlt, FaInbox, FaFlask, FaQuestionCircle } from "react-icons/fa";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useCoursesStore } from "./store/coursesStore";
+import { useEnrollmentsStore } from "./store/enrollmentsStore";
+import { useAccountContext } from "./account/AccountContext";
 
 export default function KambazNavigation() {
   const pathname = usePathname();
+  const courses = useCoursesStore((state) => state.courses);
+  const enrollments = useEnrollmentsStore((state) => state.enrollments);
+  const { currentUser } = useAccountContext();
+  const enrolledCourses = courses.filter((item) =>
+    currentUser && enrollments.some((enrollment) => enrollment.user === currentUser._id && enrollment.course === item._id),
+  );
+  const currentCourseId = pathname.startsWith("/courses/")
+    ? pathname.split("/")[2]
+    : undefined;
+  const course = enrolledCourses.find((item) => item._id === currentCourseId) ?? enrolledCourses[0];
+  const coursesHref = course
+    ? `/courses/${encodeURIComponent(course._id)}/home`
+    : "/dashboard";
   const links = [
     { href: "/account", id: "wd-account-link", label: "Account", Icon: FaRegCircleUser },
     { href: "/dashboard", id: "wd-dashboard-link", label: "Dashboard", Icon: AiOutlineDashboard },
-    { href: "/dashboard", match: "/courses", id: "wd-course-link", label: "Courses", Icon: FaBook },
+    { href: coursesHref, match: "/courses", id: "wd-course-link", label: "Courses", Icon: FaBook },
     { href: "/calendar", id: "wd-calendar-link", label: "Calendar", Icon: FaRegCalendarAlt },
     { href: "/inbox", id: "wd-inbox-link", label: "Inbox", Icon: FaInbox },
     { href: "/labs", id: "wd-labs-link", label: "Labs", Icon: FaFlask },
