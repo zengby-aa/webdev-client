@@ -8,8 +8,7 @@ export default function QueryCalculator() {
   const bRaw = searchParams.get("b") || "0";
   const a = parseFloat(aRaw);
   const b = parseFloat(bRaw);
-  const cRaw = searchParams.get("c");
-  const sum = a + b + parseFloat(cRaw || "0");
+  const sum = a + b;
   return (
     <div id="wd-query-calculator">
       <h1>Calculator – Query Parameters</h1>
@@ -20,7 +19,6 @@ export default function QueryCalculator() {
       <p>
         b = <code>{bRaw}</code>
       </p>
-      {cRaw !== null && <p>c = <code>{cRaw}</code></p>}
       <h2 className="text-green-700">Sum = {sum}</h2>
     </div>
   );
