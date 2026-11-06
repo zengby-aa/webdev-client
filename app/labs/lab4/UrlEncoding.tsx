@@ -36,6 +36,7 @@ export default function UrlEncoding() {
         onChange={(e) => setA(e.target.value)}
         className="mb-2 block w-full rounded border border-neutral-300 px-3 py-1.5"
         id="wd-url-a"
+        aria-label="First number"
       />
       <input
         type="number"
@@ -43,6 +44,7 @@ export default function UrlEncoding() {
         onChange={(e) => setB(e.target.value)}
         className="mb-3 block w-full rounded border border-neutral-300 px-3 py-1.5"
         id="wd-url-b"
+        aria-label="Second number"
       />
       <h4>Programmatic navigation (using router.push):</h4>
       <button

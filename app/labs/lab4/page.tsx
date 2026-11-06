@@ -14,6 +14,9 @@ import ArrayStateVariable from "./ArrayStateVariable";
 import ParentStateComponent from "./ParentStateComponent";
 import PropDrilling from "./PropDrilling";
 import Effect from "./Effect";
+import UrlEncoding from "./UrlEncoding";
+import ZustandExamples from "./zustand/ZustandExamples";
+import ReduxExamples from "./redux/ReduxExamples";
 
 export default function Lab4() {
   const sayHello = (message: string) => {
@@ -47,6 +50,9 @@ export default function Lab4() {
       <ParentStateComponent />
       <PropDrilling />
       <Effect />
+      <UrlEncoding />
+      <ZustandExamples />
+      <ReduxExamples />
       <Link href="/labs/lab4/hooks" className="underline">
         Writing Your Own Hooks
       </Link>

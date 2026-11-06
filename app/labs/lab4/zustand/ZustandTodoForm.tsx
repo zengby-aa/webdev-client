@@ -12,6 +12,7 @@ export default function ZustandTodoForm() {
         value={todo.title}
         onChange={(e) => setTodo({ ...todo, title: e.target.value })}
         id="wd-zustand-todo-title"
+        aria-label="Zustand todo title"
       />
       <button
         type="button"

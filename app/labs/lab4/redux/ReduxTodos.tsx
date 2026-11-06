@@ -19,6 +19,7 @@ function ReduxTodoForm({
     <div className="mb-2 flex flex-wrap gap-2">
       <input
         id="wd-redux-todo-title"
+        aria-label="Redux todo title"
         className="rounded border border-neutral-300 px-2 py-1"
         value={title}
         onChange={(e) => setTitle(e.target.value)}

@@ -1,7 +1,7 @@
 "use client";
 
 import { ReactNode, useState } from "react";
-import { redirect, useParams } from "next/navigation";
+import { redirect, useParams, usePathname } from "next/navigation";
 import { FaAlignJustify } from "react-icons/fa6";
 import CourseNavigation from "./Navigation";
 import Breadcrumb from "./Breadcrumb";
@@ -15,6 +15,7 @@ export default function CoursesLayout({
   children: ReactNode;
 }>) {
   const { cid } = useParams();
+  const pathname = usePathname();
   const courseId = typeof cid === "string" ? cid : "";
   const courses = useCoursesStore((state) => state.courses);
   const course = courses.find((c) => c._id === courseId);
@@ -22,7 +23,13 @@ export default function CoursesLayout({
   const enrollments = useEnrollmentsStore((state) => state.enrollments);
   const [showCourseNav, setShowCourseNav] = useState(true);
 
-  if (!course || !currentUser || !enrollments.some((item) => item.user === currentUser._id && item.course === courseId)) {
+  if (!course) redirect("/dashboard");
+
+  if (!currentUser) {
+    redirect(`/account/signin?next=${encodeURIComponent(pathname)}`);
+  }
+
+  if (!enrollments.some((item) => item.user === currentUser._id && item.course === courseId)) {
     redirect("/dashboard");
   }
 
