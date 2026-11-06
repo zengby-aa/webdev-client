@@ -12,6 +12,7 @@ import ObjectStateVariable from "./ObjectStateVariable";
 import ArrayStateVariable from "./ArrayStateVariable";
 import ParentStateComponent from "./ParentStateComponent";
 import PropDrilling from "./PropDrilling";
+import Effect from "./Effect";
 
 export default function Lab4() {
   const sayHello = (message: string) => {
@@ -44,6 +45,7 @@ export default function Lab4() {
       <ArrayStateVariable />
       <ParentStateComponent />
       <PropDrilling />
+      <Effect />
     </div>
   );
 }
