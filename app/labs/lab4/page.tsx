@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import ClickEvent from "./ClickEvent";
 import PassingDataOnEvent from "./PassingDataOnEvent";
 import PassingFunctions from "./PassingFunctions";
@@ -46,6 +47,9 @@ export default function Lab4() {
       <ParentStateComponent />
       <PropDrilling />
       <Effect />
+      <Link href="/labs/lab4/hooks" className="underline">
+        Writing Your Own Hooks
+      </Link>
     </div>
   );
 }

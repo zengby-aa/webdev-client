@@ -8,6 +8,7 @@ export default function Effect() {
 
   useEffect(() => {
     document.title = `${name} — clicked ${count}`;
+    console.log(name, count);
   }, [name, count]);
 
   return (
